@@ -14,7 +14,7 @@
             align-items: center;
             margin: 20px;
             background: #333333;
-            color: black;
+            color: white;
         }
         .container {
             width: 90%;
@@ -66,13 +66,13 @@
             border-bottom-right-radius: 8px;
         }
         .section {
-            background: #d3d3d3;
+            background: black;
             margin: 10px 0;
             padding: 15px;
             text-align: center;
             border-radius: 8px;
             cursor: grab;
-            border: 4px solid black;
+            border: 2px solid #888;
         }
         .counter {
             display: flex;
@@ -83,7 +83,7 @@
         .count {
             font-size: 32px;
             font-weight: bold;
-            color: black;
+            color: white;
             font-family: Arial, sans-serif;
         }
         button {
@@ -97,7 +97,7 @@
             width: 100%;
             border: none;
             background: none;
-            color: black;
+            color: white;
             font-family: Arial, sans-serif;
             text-align: center;
             font-weight: bold;
@@ -115,7 +115,9 @@
     </style>
 </head>
 <body>
+    
     <div class="dice-container">
+        <button onclick="flipCoin()">Flip Coin</button>
         <button onclick="rollDice(6)">D6</button>
         <button onclick="rollDice(8)">D8</button>
         <button onclick="rollDice(10)">D10</button>
@@ -174,6 +176,10 @@
             `;
             container.appendChild(newSection);
         }
+    
+        function flipCoin() {
+            alert("Flipped: " + (Math.random() < 0.5 ? "Heads" : "Tails"));
+        }
     </script>
     <div class="add-section" onclick="removeSection()">- Remove Player</div>
     <script>
@@ -188,4 +194,3 @@
     <a href="https://cabalcoffees.etsy.com" target="_blank" style="display: block; margin-top: 20px; padding: 15px; background: #000; color: white; text-align: center; border-radius: 8px; text-decoration: none; font-weight: bold; border: 2px solid lightgray;">Shop Cabal Products</a>
 </body>
 </html>
-
