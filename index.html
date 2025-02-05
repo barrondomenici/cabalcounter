@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stax</title>
+    <title>MTG Counter App</title>
     <style>
-        
-        
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -28,42 +26,23 @@
             margin-bottom: 10px;
             border-radius: 8px;
             overflow: hidden;
+            border: 2px solid #888;
         }
         .dice-container button {
+            flex: 1;
+            margin: 0;
             padding: 10px;
-            margin: 5px;
             font-size: 16px;
             background: black !important;
             color: white !important;
-            border: 2px solid #888;
-            border-radius: 8px;
-            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+            border: none;
+            border-right: 1px solid #888;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
         }
-        button:active {
-            background: white !important;
-            color: black !important;
-            box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.3);
-        }
-        button:active {
-            background: black;
-            color: white;
-            box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.3);
-        }
-        button:active {
-            background: black;
-            color: white;
-            box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.3);
-        }
-        .dice-container button:first-child {
-            border-top-left-radius: 8px;
-            border-bottom-left-radius: 8px;
-        }
         .dice-container button:last-child {
-            border-top-right-radius: 8px;
-            border-bottom-right-radius: 8px;
+            border-right: none;
         }
         .section {
             background: black;
@@ -115,7 +94,6 @@
     </style>
 </head>
 <body>
-    
     <div class="dice-container">
         <button onclick="flipCoin()">Flip Coin</button>
         <button onclick="rollDice(6)">D6</button>
@@ -146,9 +124,6 @@
             </div>
         </div>
     </div>
-    <div style="display: flex; gap: 10px; margin-top: 10px;">
-        <div class="add-section" onclick="addSection()">+ Add Player</div>
-    </div>
     <script>
         function changeCounter(button, amount) {
             let counterSpan = button.parentElement.querySelector(".count");
@@ -159,6 +134,10 @@
             alert("Rolled: " + (Math.floor(Math.random() * sides) + 1));
         }
 
+        function flipCoin() {
+            alert("Flipped: " + (Math.random() < 0.5 ? "Heads" : "Tails"));
+        }
+    
         function addSection() {
             const container = document.getElementById("sectionContainer");
             const newSection = document.createElement("div");
@@ -176,21 +155,18 @@
             `;
             container.appendChild(newSection);
         }
-    
-        function flipCoin() {
-            alert("Flipped: " + (Math.random() < 0.5 ? "Heads" : "Tails"));
-        }
-    </script>
-    <div class="add-section" onclick="removeSection()">- Remove Player</div>
-    <script>
+        
         function removeSection() {
             const container = document.getElementById("sectionContainer");
-            const sections = container.getElementsByClassName("section");
-            if (sections.length > 2) {
-                container.removeChild(sections[sections.length - 1]);
+            if (container.children.length > 2) {
+                container.removeChild(container.lastElementChild);
             }
         }
     </script>
+    <div style="display: flex; gap: 10px; margin-top: 10px;">
+        <div class="add-section" onclick="addSection()">+ Add Player</div>
+        <div class="add-section" onclick="removeSection()">- Remove Player</div>
+    </div>
     <a href="https://cabalcoffees.etsy.com" target="_blank" style="display: block; margin-top: 20px; padding: 15px; background: #000; color: white; text-align: center; border-radius: 8px; text-decoration: none; font-weight: bold; border: 2px solid lightgray;">Shop Cabal Products</a>
 </body>
 </html>
